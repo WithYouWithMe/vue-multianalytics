@@ -4,7 +4,7 @@ import BasicModule from './BasicModule'
 export default class HubspotModule extends BasicModule {
 
     constructor () {
-        this.setUserProperties(MODULE_HUBSPOT)
+        super(MODULE_HUBSPOT)
     }
 
     init (initConf = {}) {

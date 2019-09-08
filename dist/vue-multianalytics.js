@@ -83,6 +83,10 @@ module.exports =
 
 	var _FullstoryModule2 = _interopRequireDefault(_FullstoryModule);
 
+	var _HubspotModule = __webpack_require__(12);
+
+	var _HubspotModule2 = _interopRequireDefault(_HubspotModule);
+
 	var _utils = __webpack_require__(5);
 
 	var Utils = _interopRequireWildcard(_utils);
@@ -140,6 +144,10 @@ module.exports =
 	        break;
 	      case types.MODULE_FULLSTORY:
 	        module = new _FullstoryModule2.default();
+	        module.init(initConf.modules[key]);
+	        break;
+	      case types.MODULE_HUBSPOT:
+	        module = new _HubspotModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      default:
@@ -1039,6 +1047,7 @@ module.exports =
 	var MODULE_MPARTICLE = exports.MODULE_MPARTICLE = 'mparticle';
 	var MODULE_AMPLITUDE = exports.MODULE_AMPLITUDE = 'amplitude';
 	var MODULE_FULLSTORY = exports.MODULE_FULLSTORY = 'fullstory';
+	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
 
 /***/ }),
 /* 4 */
@@ -2345,9 +2354,16 @@ module.exports =
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+	      // Apply default configuration
+	      // initConf = { ...pluginConfig, ...initConf }
+	      var mandatoryParams = ['token'];
+	      mandatoryParams.forEach(function (el) {
+	        if (!initConf[el]) throw new Error('VueAnalytics : Please provide a "' + el + '" from the config.');
+	      });
+
 	      window['_fs_debug'] = false;
 	      window['_fs_host'] = 'fullstory.com';
-	      window['_fs_org'] = 'MP3A5';
+	      window['_fs_org'] = initConf.token;
 	      window['_fs_namespace'] = 'fullstory';
 	      (function (m, n, e, t, l, o, g, y) {
 	        if (e in m) {
@@ -2452,6 +2468,120 @@ module.exports =
 	}(_BasicModule3.default);
 
 	exports.default = FullStoryModule;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _analyticsTypes = __webpack_require__(3);
+
+	var _BasicModule2 = __webpack_require__(4);
+
+	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var HubspotModule = function (_BasicModule) {
+	  _inherits(HubspotModule, _BasicModule);
+
+	  function HubspotModule() {
+	    _classCallCheck(this, HubspotModule);
+
+	    return _possibleConstructorReturn(this, (HubspotModule.__proto__ || Object.getPrototypeOf(HubspotModule)).call(this, _analyticsTypes.MODULE_HUBSPOT));
+	  }
+
+	  _createClass(HubspotModule, [{
+	    key: 'init',
+	    value: function init() {
+	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	      //Load the HubSpot tracking code
+	      (function () {
+	        var e = document.createElement("script");
+	        e.type = "text/javascript";
+	        e.async = true;
+	        e.setAttribute('defer', '');
+	        e.src = "https://js.hs-scripts.com/5968541.js";
+	        var n = document.getElementsByTagName("script")[0];
+	        n.parentNode.insertBefore(e, n);
+	      })();
+
+	      this.config.debug = initConf.debug;
+	    }
+	  }, {
+	    key: 'trackView',
+	    value: function trackView() {/* Overriden by modules */}
+	  }, {
+	    key: 'trackEvent',
+	    value: function trackEvent() {/* Overriden by modules */}
+	  }, {
+	    key: 'trackException',
+	    value: function trackException() {/* Overriden by modules */}
+	  }, {
+	    key: 'trackTiming',
+	    value: function trackTiming() {/* Overriden by modules */}
+	  }, {
+	    key: 'setAlias',
+	    value: function setAlias() {/* Overriden by modules */}
+	  }, {
+	    key: 'identify',
+	    value: function identify() {/* Overriden by modules */}
+	  }, {
+	    key: 'setUsername',
+	    value: function setUsername() {/* Overriden by modules */}
+	  }, {
+	    key: 'setUserProperties',
+	    value: function setUserProperties() {/* Overriden by modules */}
+	  }, {
+	    key: 'setUserPropertiesOnce',
+	    value: function setUserPropertiesOnce() {/* Overriden by modules */}
+	  }, {
+	    key: 'incrementUserProperties',
+	    value: function incrementUserProperties() {/* Overriden by modules */}
+	  }, {
+	    key: 'setSuperProperties',
+	    value: function setSuperProperties() {/* Overriden by modules */}
+	  }, {
+	    key: 'setSuperPropertiesOnce',
+	    value: function setSuperPropertiesOnce() {/* Overriden by modules */}
+	  }, {
+	    key: 'ecommerceTrackEvent',
+	    value: function ecommerceTrackEvent() {/* Overriden by modules */}
+	  }, {
+	    key: 'addTransaction',
+	    value: function addTransaction() {/* Overriden by modules */}
+	  }, {
+	    key: 'addItem',
+	    value: function addItem() {/* Overriden by modules */}
+	  }, {
+	    key: 'trackTransaction',
+	    value: function trackTransaction() {/* Overriden by modules */}
+	  }, {
+	    key: 'clearTransactions',
+	    value: function clearTransactions() {/* Overriden by modules */}
+	  }, {
+	    key: 'reset',
+	    value: function reset() {/* Overriden by modules */}
+	  }]);
+
+	  return HubspotModule;
+	}(_BasicModule3.default);
+
+	exports.default = HubspotModule;
 
 /***/ })
 /******/ ]);

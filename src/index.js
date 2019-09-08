@@ -58,6 +58,7 @@ const install = function (Vue, initConf = {}, mixin) {
       case types.MODULE_HUBSPOT:
         module = new HubspotModule()
         module.init(initConf.modules[key])
+        break;
       default:
         break;
     }
