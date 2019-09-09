@@ -1,3 +1,4 @@
+[![Board Status](https://wywm.visualstudio.com/9a189705-9ce1-4e58-abe7-fa099033896c/6e06f429-3c17-4c75-b791-1cb099556ca2/_apis/work/boardbadge/ac00039a-a68d-4f02-99ac-72ba0831b334)](https://wywm.visualstudio.com/9a189705-9ce1-4e58-abe7-fa099033896c/_boards/board/t/6e06f429-3c17-4c75-b791-1cb099556ca2/Microsoft.RequirementCategory)
 
 # Vue-multianalytics
 
