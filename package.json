@@ -1,6 +1,6 @@
 {
   "name": "@withyouwithme/vue-multianalytics",
-  "version": "1.9.9",
+  "version": "1.9.10",
   "description": "A vue multianalytics tool",
   "main": "./dist/vue-multianalytics.min.js",
   "author": "Glovoapp, Adrian Latorre, Francisco Zurita; WithYouWithMe, Uri Levitsky",

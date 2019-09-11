@@ -14,7 +14,7 @@ export default class HubspotModule extends BasicModule {
         e.type = "text/javascript";
         e.async = true;
         e.setAttribute('defer', '');
-        e.src = ("https://js.hs-scripts.com/" + initConf.token + ".js");
+        e.src = (`https://js.hs-scripts.com/${initConf.token}.js`);
         var n = document.getElementsByTagName("script")[0];
         n.parentNode.insertBefore(e, n)
       })();
