@@ -87,6 +87,10 @@ module.exports =
 
 	var _HubspotModule2 = _interopRequireDefault(_HubspotModule);
 
+	var _PersonizelyModule = __webpack_require__(13);
+
+	var _PersonizelyModule2 = _interopRequireDefault(_PersonizelyModule);
+
 	var _utils = __webpack_require__(5);
 
 	var Utils = _interopRequireWildcard(_utils);
@@ -148,6 +152,10 @@ module.exports =
 	        break;
 	      case types.MODULE_HUBSPOT:
 	        module = new _HubspotModule2.default();
+	        module.init(initConf.modules[key]);
+	        break;
+	      case types.MODULE_PERSONIZELY:
+	        module = new _PersonizelyModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      default:
@@ -1048,6 +1056,7 @@ module.exports =
 	var MODULE_AMPLITUDE = exports.MODULE_AMPLITUDE = 'amplitude';
 	var MODULE_FULLSTORY = exports.MODULE_FULLSTORY = 'fullstory';
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
+	var MODULE_PERSONIZELY = exports.MODULE_PERSONIZELY = 'personizely';
 
 /***/ }),
 /* 4 */
@@ -2589,6 +2598,75 @@ module.exports =
 	}(_BasicModule3.default);
 
 	exports.default = HubspotModule;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _analyticsTypes = __webpack_require__(3);
+
+	var _BasicModule2 = __webpack_require__(4);
+
+	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PersonizelyModule = function (_BasicModule) {
+	  _inherits(PersonizelyModule, _BasicModule);
+
+	  function PersonizelyModule() {
+	    _classCallCheck(this, PersonizelyModule);
+
+	    return _possibleConstructorReturn(this, (PersonizelyModule.__proto__ || Object.getPrototypeOf(PersonizelyModule)).call(this, _analyticsTypes.MODULE_PERSONIZELY));
+	  }
+
+	  _createClass(PersonizelyModule, [{
+	    key: 'init',
+	    value: function init() {
+	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	      // Load Personizely
+	      (function () {
+	        var e = document.createElement("link");
+	        e.href = 'https://static.personizely.net/' + initConf.token + '.css';
+	        e.rel = "stylesheet";
+
+	        var n = document.getElementsByTagName("link")[0];
+	        n.parentNode.insertBefore(e, n);
+	      })();
+
+	      (function () {
+	        var e = document.createElement("script");
+	        e.src = 'https://static.personizely.net/' + initConf.token + '.js';
+	        e.type = "text/javascript";
+	        e.async = true;
+
+	        var n = document.getElementsByTagName("script")[0];
+	        n.parentNode.insertBefore(e, n);
+	      })();
+
+	      this.config.debug = initConf.debug;
+	    }
+	  }]);
+
+	  return PersonizelyModule;
+	}(_BasicModule3.default);
+
+	exports.default = PersonizelyModule;
 
 /***/ })
 /******/ ]);
