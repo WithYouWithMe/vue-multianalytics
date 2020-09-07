@@ -19,6 +19,7 @@ export default class FullStoryModule extends BasicModule {
     window['_fs_host'] = 'fullstory.com';
     window['_fs_org'] = initConf.token;
     window['_fs_namespace'] = 'fullstory';
+    window['_fs_run_in_iframe'] = initConf.runInIframe || false;
     (function(m,n,e,t,l,o,g,y){
         if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
         g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];

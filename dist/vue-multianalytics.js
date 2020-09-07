@@ -2374,6 +2374,7 @@ module.exports =
 	      window['_fs_host'] = 'fullstory.com';
 	      window['_fs_org'] = initConf.token;
 	      window['_fs_namespace'] = 'fullstory';
+	      window['_fs_run_in_iframe'] = initConf.runInIframe || false;
 	      (function (m, n, e, t, l, o, g, y) {
 	        if (e in m) {
 	          if (m.console && m.console.log) {
