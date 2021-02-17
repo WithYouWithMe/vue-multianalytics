@@ -95,6 +95,14 @@ module.exports =
 
 	var _MarketHeroModule2 = _interopRequireDefault(_MarketHeroModule);
 
+	var _ProductStashModule = __webpack_require__(16);
+
+	var _ProductStashModule2 = _interopRequireDefault(_ProductStashModule);
+
+	var _ProductTourModule = __webpack_require__(17);
+
+	var _ProductTourModule2 = _interopRequireDefault(_ProductTourModule);
+
 	var _utils = __webpack_require__(6);
 
 	var Utils = _interopRequireWildcard(_utils);
@@ -164,6 +172,14 @@ module.exports =
 	        break;
 	      case types.MODULE_MARKET_HERO:
 	        module = new _MarketHeroModule2.default();
+	        module.init(initConf.modules[key]);
+	        break;
+	      case types.MODULE_PRODUCT_STASH:
+	        module = new _ProductStashModule2.default();
+	        module.init(initConf.modules[key]);
+	        break;
+	      case types.MODULE_PRODUCT_TOUR:
+	        module = new _ProductTourModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      default:
@@ -1822,6 +1838,8 @@ module.exports =
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
 	var MODULE_PERSONIZELY = exports.MODULE_PERSONIZELY = 'personizely';
 	var MODULE_MARKET_HERO = exports.MODULE_MARKET_HERO = 'markethero';
+	var MODULE_PRODUCT_STASH = exports.MODULE_PRODUCT_STASH = 'productstash';
+	var MODULE_PRODUCT_TOUR = exports.MODULE_PRODUCT_TOUR = 'producttour';
 
 /***/ }),
 /* 5 */
@@ -3493,6 +3511,151 @@ module.exports =
 	}(_BasicModule3.default);
 
 	exports.default = MarketHeroModule;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _analyticsTypes = __webpack_require__(4);
+
+	var _BasicModule2 = __webpack_require__(5);
+
+	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProductStashModule = function (_BasicModule) {
+	  _inherits(ProductStashModule, _BasicModule);
+
+	  function ProductStashModule() {
+	    _classCallCheck(this, ProductStashModule);
+
+	    return _possibleConstructorReturn(this, (ProductStashModule.__proto__ || Object.getPrototypeOf(ProductStashModule)).call(this, _analyticsTypes.MODULE_PRODUCT_STASH));
+	  }
+
+	  _createClass(ProductStashModule, [{
+	    key: 'init',
+	    value: function init() {
+	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+
+	      (function () {
+
+	        var e2 = document.createElement("script");
+	        e2.text = 'var ps_config = { productId : "' + initConf.token + '" };';
+	        e2.type = "text/javascript";
+	        e2.async = true;
+	        var n1 = document.getElementsByTagName("script")[0];
+	        n1.parentNode.insertBefore(e2, n1);
+
+	        var e1 = document.createElement("script");
+	        e1.src = "https://app.productstash.io/js/productstash-embed.js";
+	        e1.type = "text/javascript";
+	        e1.async = true;
+
+	        var n2 = document.getElementsByTagName("script")[0];
+	        n2.parentNode.insertBefore(e1, n2);
+	      })();
+
+	      this.config.debug = initConf.debug;
+	    }
+	  }]);
+
+	  return ProductStashModule;
+	}(_BasicModule3.default);
+
+	exports.default = ProductStashModule;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _analyticsTypes = __webpack_require__(4);
+
+	var _BasicModule2 = __webpack_require__(5);
+
+	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProductTourModule = function (_BasicModule) {
+	  _inherits(ProductTourModule, _BasicModule);
+
+	  function ProductTourModule() {
+	    _classCallCheck(this, ProductTourModule);
+
+	    return _possibleConstructorReturn(this, (ProductTourModule.__proto__ || Object.getPrototypeOf(ProductTourModule)).call(this, _analyticsTypes.MODULE_PRODUCT_TOUR));
+	  }
+
+	  _createClass(ProductTourModule, [{
+	    key: 'init',
+	    value: function init() {
+	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+
+	      (function () {
+	        console.log("[INFO] product tour loaded");
+	        var e = document.createElement("script");
+	        e.text = '!function(d,w){var t="' + initConf.token + '",c="chmln",m="identify alias track clear set show on off custom help _data".split(" "),i=d.createElement("script");if(w[c]||(w[c]={}),!w[c].root){w[c].accountToken=t,w[c].location=w.location.href.toString(),w[c].now=new Date;for(var s=0;s<m.length;s++){!function(){var t=w[c][m[s]+"_a"]=[];w[c][m[s]]=function(){t.push(arguments);};}();}i.src="https://fast.trychameleon.com/messo/"+t+"/messo.min.js",i.async=!0,d.head.appendChild(i);}}(document,window);';
+	        e.type = "text/javascript";
+	        e.async = true;
+	        var n = document.getElementsByTagName("script")[0];
+	        n.parentNode.insertBefore(e, n);
+	      })();
+
+	      this.config.debug = initConf.debug;
+	    }
+	  }, {
+	    key: 'identify',
+	    value: function identify(_ref) {
+	      var userId = _ref.userId,
+	          options = _ref.options;
+
+	      console.log("[INFO] chameleon identify called");
+	      chmln.identify(userId, {
+	        email: options.email,
+	        created: options.createdAt,
+	        name: options.name,
+	        role: options.role
+	      });
+	    }
+
+	    // more options available, see https://app.trychameleon.com/setup/install
+
+	  }]);
+
+	  return ProductTourModule;
+	}(_BasicModule3.default);
+
+	exports.default = ProductTourModule;
 
 /***/ })
 /******/ ]);
