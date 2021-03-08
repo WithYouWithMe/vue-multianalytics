@@ -8,6 +8,7 @@ export default class FullStoryModule extends BasicModule {
   }
 
   init (initConf = {}) {
+    console.log("[INFO] loading fullstory module");
     // Apply default configuration
     // initConf = { ...pluginConfig, ...initConf }
     const mandatoryParams = [ 'token' ];
@@ -45,6 +46,7 @@ export default class FullStoryModule extends BasicModule {
   setAlias () { /* Overriden by modules */ }
 
   identify ({ userId, options }) {
+    console.log("[INFO] fullstory identifying user");
     fullstory.identify(userId, {
       displayName: options.name,
       email: options.email

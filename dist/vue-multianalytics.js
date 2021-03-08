@@ -87,19 +87,15 @@ module.exports =
 
 	var _HubspotModule2 = _interopRequireDefault(_HubspotModule);
 
-	var _PersonizelyModule = __webpack_require__(14);
-
-	var _PersonizelyModule2 = _interopRequireDefault(_PersonizelyModule);
-
-	var _MarketHeroModule = __webpack_require__(15);
+	var _MarketHeroModule = __webpack_require__(14);
 
 	var _MarketHeroModule2 = _interopRequireDefault(_MarketHeroModule);
 
-	var _ProductStashModule = __webpack_require__(16);
+	var _ProductStashModule = __webpack_require__(15);
 
 	var _ProductStashModule2 = _interopRequireDefault(_ProductStashModule);
 
-	var _ProductTourModule = __webpack_require__(17);
+	var _ProductTourModule = __webpack_require__(16);
 
 	var _ProductTourModule2 = _interopRequireDefault(_ProductTourModule);
 
@@ -164,10 +160,6 @@ module.exports =
 	        break;
 	      case types.MODULE_HUBSPOT:
 	        module = new _HubspotModule2.default();
-	        module.init(initConf.modules[key]);
-	        break;
-	      case types.MODULE_PERSONIZELY:
-	        module = new _PersonizelyModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      case types.MODULE_MARKET_HERO:
@@ -1836,7 +1828,6 @@ module.exports =
 	var MODULE_AMPLITUDE = exports.MODULE_AMPLITUDE = 'amplitude';
 	var MODULE_FULLSTORY = exports.MODULE_FULLSTORY = 'fullstory';
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
-	var MODULE_PERSONIZELY = exports.MODULE_PERSONIZELY = 'personizely';
 	var MODULE_MARKET_HERO = exports.MODULE_MARKET_HERO = 'markethero';
 	var MODULE_PRODUCT_STASH = exports.MODULE_PRODUCT_STASH = 'productstash';
 	var MODULE_PRODUCT_TOUR = exports.MODULE_PRODUCT_TOUR = 'producttour';
@@ -3146,6 +3137,7 @@ module.exports =
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+	      console.log("[INFO] loading fullstory module");
 	      // Apply default configuration
 	      // initConf = { ...pluginConfig, ...initConf }
 	      var mandatoryParams = ['token'];
@@ -3214,6 +3206,7 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
+	      console.log("[INFO] fullstory identifying user");
 	      fullstory.identify(userId, {
 	        displayName: options.name,
 	        email: options.email
@@ -3409,75 +3402,6 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var PersonizelyModule = function (_BasicModule) {
-	  _inherits(PersonizelyModule, _BasicModule);
-
-	  function PersonizelyModule() {
-	    _classCallCheck(this, PersonizelyModule);
-
-	    return _possibleConstructorReturn(this, (PersonizelyModule.__proto__ || Object.getPrototypeOf(PersonizelyModule)).call(this, _analyticsTypes.MODULE_PERSONIZELY));
-	  }
-
-	  _createClass(PersonizelyModule, [{
-	    key: 'init',
-	    value: function init() {
-	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-	      // Load Personizely
-	      (function () {
-	        var e = document.createElement("link");
-	        e.href = 'https://static.personizely.net/' + initConf.token + '.css';
-	        e.rel = "stylesheet";
-
-	        var n = document.getElementsByTagName("link")[0];
-	        n.parentNode.insertBefore(e, n);
-	      })();
-
-	      (function () {
-	        var e = document.createElement("script");
-	        e.src = 'https://static.personizely.net/' + initConf.token + '.js';
-	        e.type = "text/javascript";
-	        e.async = true;
-
-	        var n = document.getElementsByTagName("script")[0];
-	        n.parentNode.insertBefore(e, n);
-	      })();
-
-	      this.config.debug = initConf.debug;
-	    }
-	  }]);
-
-	  return PersonizelyModule;
-	}(_BasicModule3.default);
-
-	exports.default = PersonizelyModule;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _analyticsTypes = __webpack_require__(4);
-
-	var _BasicModule2 = __webpack_require__(5);
-
-	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var MarketHeroModule = function (_BasicModule) {
 	  _inherits(MarketHeroModule, _BasicModule);
 
@@ -3513,7 +3437,7 @@ module.exports =
 	exports.default = MarketHeroModule;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3581,7 +3505,7 @@ module.exports =
 	exports.default = ProductStashModule;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3622,7 +3546,6 @@ module.exports =
 
 
 	      (function () {
-	        console.log("[INFO] product tour loaded");
 	        var e = document.createElement("script");
 	        e.text = '!function(d,w){var t="' + initConf.token + '",c="chmln",m="identify alias track clear set show on off custom help _data".split(" "),i=d.createElement("script");if(w[c]||(w[c]={}),!w[c].root){w[c].accountToken=t,w[c].location=w.location.href.toString(),w[c].now=new Date;for(var s=0;s<m.length;s++){!function(){var t=w[c][m[s]+"_a"]=[];w[c][m[s]]=function(){t.push(arguments);};}();}i.src="https://fast.trychameleon.com/messo/"+t+"/messo.min.js",i.async=!0,d.head.appendChild(i);}}(document,window);';
 	        e.type = "text/javascript";
@@ -3639,7 +3562,6 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
-	      console.log("[INFO] chameleon identify called");
 	      chmln.identify(userId, {
 	        email: options.email,
 	        created: options.createdAt,
