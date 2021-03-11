@@ -3206,7 +3206,7 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
-	      console.log("[INFO] fullstory identifying user");
+	      console.log("[INFO] fullstory identifying user **");
 	      fullstory.identify(userId, {
 	        displayName: options.name,
 	        email: options.email
@@ -3562,6 +3562,7 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
+	      console.log("[INFO] chameleon identifying user **");
 	      chmln.identify(userId, {
 	        email: options.email,
 	        created: options.createdAt,
