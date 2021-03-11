@@ -87,15 +87,11 @@ module.exports =
 
 	var _HubspotModule2 = _interopRequireDefault(_HubspotModule);
 
-	var _MarketHeroModule = __webpack_require__(14);
-
-	var _MarketHeroModule2 = _interopRequireDefault(_MarketHeroModule);
-
-	var _ProductStashModule = __webpack_require__(15);
+	var _ProductStashModule = __webpack_require__(14);
 
 	var _ProductStashModule2 = _interopRequireDefault(_ProductStashModule);
 
-	var _ProductTourModule = __webpack_require__(16);
+	var _ProductTourModule = __webpack_require__(15);
 
 	var _ProductTourModule2 = _interopRequireDefault(_ProductTourModule);
 
@@ -160,10 +156,6 @@ module.exports =
 	        break;
 	      case types.MODULE_HUBSPOT:
 	        module = new _HubspotModule2.default();
-	        module.init(initConf.modules[key]);
-	        break;
-	      case types.MODULE_MARKET_HERO:
-	        module = new _MarketHeroModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      case types.MODULE_PRODUCT_STASH:
@@ -1828,7 +1820,6 @@ module.exports =
 	var MODULE_AMPLITUDE = exports.MODULE_AMPLITUDE = 'amplitude';
 	var MODULE_FULLSTORY = exports.MODULE_FULLSTORY = 'fullstory';
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
-	var MODULE_MARKET_HERO = exports.MODULE_MARKET_HERO = 'markethero';
 	var MODULE_PRODUCT_STASH = exports.MODULE_PRODUCT_STASH = 'productstash';
 	var MODULE_PRODUCT_TOUR = exports.MODULE_PRODUCT_TOUR = 'producttour';
 
@@ -3206,7 +3197,6 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
-	      console.log("[INFO] fullstory identifying user **");
 	      fullstory.identify(userId, {
 	        displayName: options.name,
 	        email: options.email
@@ -3402,66 +3392,6 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var MarketHeroModule = function (_BasicModule) {
-	  _inherits(MarketHeroModule, _BasicModule);
-
-	  function MarketHeroModule() {
-	    _classCallCheck(this, MarketHeroModule);
-
-	    return _possibleConstructorReturn(this, (MarketHeroModule.__proto__ || Object.getPrototypeOf(MarketHeroModule)).call(this, _analyticsTypes.MODULE_MARKET_HERO));
-	  }
-
-	  _createClass(MarketHeroModule, [{
-	    key: 'init',
-	    value: function init() {
-	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-	      // Load Market Hero
-	      (function () {
-	        var e = document.createElement("script");
-	        e.src = 'https://176906.tracking.markethero.io/v1/lst/universal-script?ph=' + initConf.token + '&tag=!hyros%22;head.appendChild(script)';
-	        e.type = "text/javascript";
-	        e.async = true;
-
-	        var n = document.getElementsByTagName("script")[0];
-	        n.parentNode.insertBefore(e, n);
-	      })();
-
-	      this.config.debug = initConf.debug;
-	    }
-	  }]);
-
-	  return MarketHeroModule;
-	}(_BasicModule3.default);
-
-	exports.default = MarketHeroModule;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _analyticsTypes = __webpack_require__(4);
-
-	var _BasicModule2 = __webpack_require__(5);
-
-	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var ProductStashModule = function (_BasicModule) {
 	  _inherits(ProductStashModule, _BasicModule);
 
@@ -3505,7 +3435,7 @@ module.exports =
 	exports.default = ProductStashModule;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3562,7 +3492,6 @@ module.exports =
 	      var userId = _ref.userId,
 	          options = _ref.options;
 
-	      console.log("[INFO] chameleon identifying user **");
 	      chmln.identify(userId, {
 	        email: options.email,
 	        created: options.createdAt,
