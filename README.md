@@ -23,7 +23,20 @@ A [VueJS](http://vuejs.org) multianalytics tool
 - [Custom Modules](#custom-modules)  
 - [Todo](#todo)  
 
+## Linking this package for local development (WYWM)
 
+To use with local environment simply
+
+From this package
+- yarn
+- yarn link
+- yarn build (NEED to do this)
+
+From potential
+- yarn link @withyouwithme/vue-multianalytics (just copy paste what is shown on the command line)
+
+Whenever changes are made to this package you need to run
+- yarn build
 
 ## About
 

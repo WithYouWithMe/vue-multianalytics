@@ -8,6 +8,7 @@ export default class FullStoryModule extends BasicModule {
   }
 
   init (initConf = {}) {
+    console.log("[INFO] loading fullstory module");
     // Apply default configuration
     // initConf = { ...pluginConfig, ...initConf }
     const mandatoryParams = [ 'token' ];

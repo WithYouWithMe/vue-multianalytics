@@ -87,13 +87,13 @@ module.exports =
 
 	var _HubspotModule2 = _interopRequireDefault(_HubspotModule);
 
-	var _PersonizelyModule = __webpack_require__(14);
+	var _ProductStashModule = __webpack_require__(14);
 
-	var _PersonizelyModule2 = _interopRequireDefault(_PersonizelyModule);
+	var _ProductStashModule2 = _interopRequireDefault(_ProductStashModule);
 
-	var _MarketHeroModule = __webpack_require__(15);
+	var _ProductTourModule = __webpack_require__(15);
 
-	var _MarketHeroModule2 = _interopRequireDefault(_MarketHeroModule);
+	var _ProductTourModule2 = _interopRequireDefault(_ProductTourModule);
 
 	var _utils = __webpack_require__(6);
 
@@ -158,12 +158,12 @@ module.exports =
 	        module = new _HubspotModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
-	      case types.MODULE_PERSONIZELY:
-	        module = new _PersonizelyModule2.default();
+	      case types.MODULE_PRODUCT_STASH:
+	        module = new _ProductStashModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
-	      case types.MODULE_MARKET_HERO:
-	        module = new _MarketHeroModule2.default();
+	      case types.MODULE_PRODUCT_TOUR:
+	        module = new _ProductTourModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      default:
@@ -1820,8 +1820,8 @@ module.exports =
 	var MODULE_AMPLITUDE = exports.MODULE_AMPLITUDE = 'amplitude';
 	var MODULE_FULLSTORY = exports.MODULE_FULLSTORY = 'fullstory';
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
-	var MODULE_PERSONIZELY = exports.MODULE_PERSONIZELY = 'personizely';
-	var MODULE_MARKET_HERO = exports.MODULE_MARKET_HERO = 'markethero';
+	var MODULE_PRODUCT_STASH = exports.MODULE_PRODUCT_STASH = 'productstash';
+	var MODULE_PRODUCT_TOUR = exports.MODULE_PRODUCT_TOUR = 'producttour';
 
 /***/ }),
 /* 5 */
@@ -3128,6 +3128,7 @@ module.exports =
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+	      console.log("[INFO] loading fullstory module");
 	      // Apply default configuration
 	      // initConf = { ...pluginConfig, ...initConf }
 	      var mandatoryParams = ['token'];
@@ -3391,48 +3392,47 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var PersonizelyModule = function (_BasicModule) {
-	  _inherits(PersonizelyModule, _BasicModule);
+	var ProductStashModule = function (_BasicModule) {
+	  _inherits(ProductStashModule, _BasicModule);
 
-	  function PersonizelyModule() {
-	    _classCallCheck(this, PersonizelyModule);
+	  function ProductStashModule() {
+	    _classCallCheck(this, ProductStashModule);
 
-	    return _possibleConstructorReturn(this, (PersonizelyModule.__proto__ || Object.getPrototypeOf(PersonizelyModule)).call(this, _analyticsTypes.MODULE_PERSONIZELY));
+	    return _possibleConstructorReturn(this, (ProductStashModule.__proto__ || Object.getPrototypeOf(ProductStashModule)).call(this, _analyticsTypes.MODULE_PRODUCT_STASH));
 	  }
 
-	  _createClass(PersonizelyModule, [{
+	  _createClass(ProductStashModule, [{
 	    key: 'init',
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	      // Load Personizely
-	      (function () {
-	        var e = document.createElement("link");
-	        e.href = 'https://static.personizely.net/' + initConf.token + '.css';
-	        e.rel = "stylesheet";
-
-	        var n = document.getElementsByTagName("link")[0];
-	        n.parentNode.insertBefore(e, n);
-	      })();
 
 	      (function () {
-	        var e = document.createElement("script");
-	        e.src = 'https://static.personizely.net/' + initConf.token + '.js';
-	        e.type = "text/javascript";
-	        e.async = true;
 
-	        var n = document.getElementsByTagName("script")[0];
-	        n.parentNode.insertBefore(e, n);
+	        var e2 = document.createElement("script");
+	        e2.text = 'var ps_config = { productId : "' + initConf.token + '" };';
+	        e2.type = "text/javascript";
+	        e2.async = true;
+	        var n1 = document.getElementsByTagName("script")[0];
+	        n1.parentNode.insertBefore(e2, n1);
+
+	        var e1 = document.createElement("script");
+	        e1.src = "https://app.productstash.io/js/productstash-embed.js";
+	        e1.type = "text/javascript";
+	        e1.async = true;
+
+	        var n2 = document.getElementsByTagName("script")[0];
+	        n2.parentNode.insertBefore(e1, n2);
 	      })();
 
 	      this.config.debug = initConf.debug;
 	    }
 	  }]);
 
-	  return PersonizelyModule;
+	  return ProductStashModule;
 	}(_BasicModule3.default);
 
-	exports.default = PersonizelyModule;
+	exports.default = ProductStashModule;
 
 /***/ }),
 /* 15 */
@@ -3460,39 +3460,54 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var MarketHeroModule = function (_BasicModule) {
-	  _inherits(MarketHeroModule, _BasicModule);
+	var ProductTourModule = function (_BasicModule) {
+	  _inherits(ProductTourModule, _BasicModule);
 
-	  function MarketHeroModule() {
-	    _classCallCheck(this, MarketHeroModule);
+	  function ProductTourModule() {
+	    _classCallCheck(this, ProductTourModule);
 
-	    return _possibleConstructorReturn(this, (MarketHeroModule.__proto__ || Object.getPrototypeOf(MarketHeroModule)).call(this, _analyticsTypes.MODULE_MARKET_HERO));
+	    return _possibleConstructorReturn(this, (ProductTourModule.__proto__ || Object.getPrototypeOf(ProductTourModule)).call(this, _analyticsTypes.MODULE_PRODUCT_TOUR));
 	  }
 
-	  _createClass(MarketHeroModule, [{
+	  _createClass(ProductTourModule, [{
 	    key: 'init',
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	      // Load Market Hero
+
 	      (function () {
 	        var e = document.createElement("script");
-	        e.src = 'https://176906.tracking.markethero.io/v1/lst/universal-script?ph=' + initConf.token + '&tag=!hyros%22;head.appendChild(script)';
+	        e.text = '!function(d,w){var t="' + initConf.token + '",c="chmln",m="identify alias track clear set show on off custom help _data".split(" "),i=d.createElement("script");if(w[c]||(w[c]={}),!w[c].root){w[c].accountToken=t,w[c].location=w.location.href.toString(),w[c].now=new Date;for(var s=0;s<m.length;s++){!function(){var t=w[c][m[s]+"_a"]=[];w[c][m[s]]=function(){t.push(arguments);};}();}i.src="https://fast.trychameleon.com/messo/"+t+"/messo.min.js",i.async=!0,d.head.appendChild(i);}}(document,window);';
 	        e.type = "text/javascript";
 	        e.async = true;
-
 	        var n = document.getElementsByTagName("script")[0];
 	        n.parentNode.insertBefore(e, n);
 	      })();
 
 	      this.config.debug = initConf.debug;
 	    }
+	  }, {
+	    key: 'identify',
+	    value: function identify(_ref) {
+	      var userId = _ref.userId,
+	          options = _ref.options;
+
+	      chmln.identify(userId, {
+	        email: options.email,
+	        created: options.createdAt,
+	        name: options.name,
+	        role: options.role
+	      });
+	    }
+
+	    // more options available, see https://app.trychameleon.com/setup/install
+
 	  }]);
 
-	  return MarketHeroModule;
+	  return ProductTourModule;
 	}(_BasicModule3.default);
 
-	exports.default = MarketHeroModule;
+	exports.default = ProductTourModule;
 
 /***/ })
 /******/ ]);
