@@ -7,7 +7,6 @@ import MparticleModule from './modules/MparticleModule'
 import AplitudeModule from './modules/AmplitudeModule'
 import FullstoryModule from './modules/FullstoryModule'
 import HubspotModule from './modules/HubspotModule'
-import MarketHeroModule from './modules/MarketHeroModule'
 import ProductStashModule from './modules/ProductStashModule'
 import ProductTourModule from './modules/ProductTourModule'
 import * as Utils from './utils'
@@ -60,10 +59,6 @@ const install = function (Vue, initConf = {}, mixin) {
         break;
       case types.MODULE_HUBSPOT:
         module = new HubspotModule()
-        module.init(initConf.modules[key])
-        break;
-      case types.MODULE_MARKET_HERO:
-        module = new MarketHeroModule()
         module.init(initConf.modules[key])
         break;
       case types.MODULE_PRODUCT_STASH:
