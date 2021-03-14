@@ -3128,7 +3128,6 @@ module.exports =
 	    value: function init() {
 	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-	      console.log("[INFO] loading fullstory module");
 	      // Apply default configuration
 	      // initConf = { ...pluginConfig, ...initConf }
 	      var mandatoryParams = ['token'];
