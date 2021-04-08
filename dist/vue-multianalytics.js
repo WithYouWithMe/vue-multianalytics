@@ -3565,13 +3565,6 @@ module.exports =
 	        headScript.async = true;
 	        var head = document.getElementsByTagName("head")[0];
 	        head.appendChild(headScript);
-
-	        var bodyScript = document.createElement("noscript");
-	        bodyScript.text = '<iframe src="https://www.googletagmanager.com/ns.html?id=' + initConf.token + '"\n      height="0" width="0" style="display:none;visibility:hidden"></iframe>';
-	        bodyScript.type = "text/javascript";
-	        bodyScript.async = true;
-	        var node2 = document.body.firstChild;
-	        node2.parentNode.insertBefore(bodyScript, node2);
 	      })();
 
 	      this.config.debug = initConf.debug;
