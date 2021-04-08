@@ -9,6 +9,7 @@ import FullstoryModule from './modules/FullstoryModule'
 import HubspotModule from './modules/HubspotModule'
 import ProductStashModule from './modules/ProductStashModule'
 import ProductTourModule from './modules/ProductTourModule'
+import GTManagerModule from './modules/GTManagerModule'
 import * as Utils from './utils'
 import * as types from './analyticsTypes'
 
@@ -33,6 +34,10 @@ const install = function (Vue, initConf = {}, mixin) {
         module = new GAModule()
         module.init(initConf.modules[key])
         break;
+      case types.MODULE_GTM:
+          module = new GTManagerModule()
+          module.init(initConf.modules[key])
+          break;
       case types.MODULE_MIXPANEL:
         module = new MixpanelModule()
         module.init(initConf.modules[key])

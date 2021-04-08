@@ -95,6 +95,10 @@ module.exports =
 
 	var _ProductTourModule2 = _interopRequireDefault(_ProductTourModule);
 
+	var _GTManagerModule = __webpack_require__(16);
+
+	var _GTManagerModule2 = _interopRequireDefault(_GTManagerModule);
+
 	var _utils = __webpack_require__(6);
 
 	var Utils = _interopRequireWildcard(_utils);
@@ -128,6 +132,10 @@ module.exports =
 	    switch (key) {
 	      case types.MODULE_GA:
 	        module = new _GAModule2.default();
+	        module.init(initConf.modules[key]);
+	        break;
+	      case types.MODULE_GTM:
+	        module = new _GTManagerModule2.default();
 	        module.init(initConf.modules[key]);
 	        break;
 	      case types.MODULE_MIXPANEL:
@@ -1822,6 +1830,7 @@ module.exports =
 	var MODULE_HUBSPOT = exports.MODULE_HUBSPOT = 'hubspot';
 	var MODULE_PRODUCT_STASH = exports.MODULE_PRODUCT_STASH = 'productstash';
 	var MODULE_PRODUCT_TOUR = exports.MODULE_PRODUCT_TOUR = 'producttour';
+	var MODULE_GTM = exports.MODULE_GTM = 'gtmanager';
 
 /***/ }),
 /* 5 */
@@ -3507,6 +3516,65 @@ module.exports =
 	}(_BasicModule3.default);
 
 	exports.default = ProductTourModule;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _analyticsTypes = __webpack_require__(4);
+
+	var _BasicModule2 = __webpack_require__(5);
+
+	var _BasicModule3 = _interopRequireDefault(_BasicModule2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var GTManagerModule = function (_BasicModule) {
+	  _inherits(GTManagerModule, _BasicModule);
+
+	  function GTManagerModule() {
+	    _classCallCheck(this, GTManagerModule);
+
+	    return _possibleConstructorReturn(this, (GTManagerModule.__proto__ || Object.getPrototypeOf(GTManagerModule)).call(this, _analyticsTypes.MODULE_GTM));
+	  }
+
+	  _createClass(GTManagerModule, [{
+	    key: 'init',
+	    value: function init() {
+	      var initConf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+
+	      (function () {
+	        var headScript = document.createElement("script");
+	        headScript.text = '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':\n      new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],\n      j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\n      \'https://www.googletagmanager.com/gtm.js?id=%27+i+dl;f.parentNode.insertBefore(j,f);\n      })(window,document,\'script\',\'dataLayer\',\'' + initConf.token + '\');';
+	        headScript.type = "text/javascript";
+	        headScript.async = true;
+	        var head = document.getElementsByTagName("head")[0];
+	        head.appendChild(headScript);
+	      })();
+
+	      this.config.debug = initConf.debug;
+	    }
+	  }]);
+
+	  return GTManagerModule;
+	}(_BasicModule3.default);
+
+	exports.default = GTManagerModule;
 
 /***/ })
 /******/ ]);
