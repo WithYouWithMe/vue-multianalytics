@@ -10,7 +10,6 @@ export default class GTManagerModule extends BasicModule {
   init (initConf = {}) {
 
     (function () {
-      console.log("[INFO] installing GTM");
       var headScript = document.createElement("script");
       headScript.text = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
